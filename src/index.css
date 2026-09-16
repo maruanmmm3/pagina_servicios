@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+body {
+  background-color: #020617;
+}
+
+.booking-calendar.rdp-root {
+  --rdp-accent-color: #38bdf8;
+  --rdp-accent-background-color: rgba(56, 189, 248, 0.15);
+  --rdp-today-color: #38bdf8;
+  --rdp-day_button-border-radius: 8px;
+  --rdp-outside-opacity: 0.35;
+  --rdp-disabled-opacity: 0.3;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.booking-calendar .rdp-day_button:hover:not(:disabled) {
+  background-color: rgba(56, 189, 248, 0.12);
+}
+
+.booking-calendar .rdp-selected .rdp-day_button {
+  background-color: #38bdf8;
+  color: #020617;
+}
+
+.booking-calendar .rdp-weekday {
+  color: #94a3b8;
+}
+
+.booking-calendar .rdp-caption_label {
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.booking-calendar .rdp-chevron {
+  fill: #38bdf8;
+}
+
+.booking-calendar .rdp-button_previous,
+.booking-calendar .rdp-button_next {
+  color: #e2e8f0;
+}
