@@ -10,7 +10,7 @@ export function useAdminServices() {
     setIsLoading(true)
     const { data, error: queryError } = await supabase
       .from('SP_categories')
-      .select('id, name, icon, order, SP_services(id, title, description, features, order, active, category_id)')
+      .select('id, name, icon, order, SP_services(id, title, description, features, price_min, price_max, negotiable, order, active, category_id)')
       .order('order', { ascending: true })
       .order('order', { ascending: true, referencedTable: 'SP_services' })
 
@@ -41,10 +41,19 @@ export function useAdminServices() {
     return { error: deleteError }
   }
 
-  const createService = async ({ categoryId, title, description, features, order }) => {
+  const createService = async ({ categoryId, title, description, features, priceMin, priceMax, negotiable, order }) => {
     const { error: insertError } = await supabase
       .from('SP_services')
-      .insert({ category_id: categoryId, title, description, features, order })
+      .insert({
+        category_id: categoryId,
+        title,
+        description,
+        features,
+        price_min: priceMin,
+        price_max: priceMax,
+        negotiable,
+        order,
+      })
     if (!insertError) await reload()
     return { error: insertError }
   }

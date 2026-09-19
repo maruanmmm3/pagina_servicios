@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAdminServices } from '../../hooks/useAdminServices'
 import { Button } from '../../components/ui/Button'
 import { CategoryForm } from '../../components/admin/CategoryForm'
+import { formatPriceRange } from '../../lib/formatPrice'
 import { ServiceForm } from '../../components/admin/ServiceForm'
 
 export function AdminServicios() {
@@ -35,7 +36,14 @@ export function AdminServicios() {
       await updateService(serviceModal.service.id, values)
     } else {
       const count = serviceModal.category.SP_services?.length ?? 0
-      await createService({ categoryId: serviceModal.category.id, ...values, order: count + 1 })
+      const { price_min, price_max, ...rest } = values
+      await createService({
+        categoryId: serviceModal.category.id,
+        ...rest,
+        priceMin: price_min,
+        priceMax: price_max,
+        order: count + 1,
+      })
     }
     setServiceModal(null)
   }
@@ -93,6 +101,12 @@ export function AdminServicios() {
                       )}
                     </p>
                     {service.description && <p className="text-sm text-slate-500">{service.description}</p>}
+                    {(service.price_min != null || service.negotiable) && (
+                      <p className="mt-1 text-sm font-medium text-emerald-700">
+                        {formatPriceRange(service.price_min, service.price_max)}
+                        {service.negotiable && ' · Negociable'}
+                      </p>
+                    )}
                     <ul className="mt-1 flex flex-wrap gap-1.5">
                       {service.features?.map((feature) => (
                         <li key={feature} className="rounded-full bg-indigo-50 px-2 py-0.5 text-xs text-indigo-700">

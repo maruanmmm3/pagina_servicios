@@ -4,6 +4,7 @@ import { useAuthContext } from '../../context/AuthContext'
 const links = [
   { to: '/admin', label: 'Dashboard', end: true },
   { to: '/admin/contenido', label: 'Contenido de inicio' },
+  { to: '/admin/portafolio', label: 'Portafolio' },
   { to: '/admin/servicios', label: 'Servicios' },
   { to: '/admin/horarios', label: 'Horarios' },
   { to: '/admin/citas', label: 'Citas' },

@@ -10,7 +10,7 @@ export function useCategories({ includeInactive = false } = {}) {
     setIsLoading(true)
     let query = supabase
       .from('SP_categories')
-      .select('id, name, icon, order, SP_services(id, title, description, features, order, active)')
+      .select('id, name, icon, order, SP_services(id, title, description, features, price_min, price_max, negotiable, order, active)')
       .order('order', { ascending: true })
       .order('order', { ascending: true, referencedTable: 'SP_services' })
 

@@ -14,6 +14,7 @@ const Login = lazy(() => import('./pages/admin/Login').then((m) => ({ default: m
 const Dashboard = lazy(() => import('./pages/admin/Dashboard').then((m) => ({ default: m.Dashboard })))
 const AdminServicios = lazy(() => import('./pages/admin/AdminServicios').then((m) => ({ default: m.AdminServicios })))
 const AdminContenido = lazy(() => import('./pages/admin/AdminContenido').then((m) => ({ default: m.AdminContenido })))
+const AdminPortafolio = lazy(() => import('./pages/admin/AdminPortafolio').then((m) => ({ default: m.AdminPortafolio })))
 const AdminHorarios = lazy(() => import('./pages/admin/AdminHorarios').then((m) => ({ default: m.AdminHorarios })))
 const AdminCitas = lazy(() => import('./pages/admin/AdminCitas').then((m) => ({ default: m.AdminCitas })))
 
@@ -45,6 +46,7 @@ function App() {
             >
               <Route index element={<Dashboard />} />
               <Route path="contenido" element={<AdminContenido />} />
+              <Route path="portafolio" element={<AdminPortafolio />} />
               <Route path="servicios" element={<AdminServicios />} />
               <Route path="horarios" element={<AdminHorarios />} />
               <Route path="citas" element={<AdminCitas />} />
