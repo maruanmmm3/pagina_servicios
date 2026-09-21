@@ -33,7 +33,8 @@ export function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4 rounded-lg bg-white p-8 shadow-sm ring-1 ring-slate-200">
-        <h1 className="text-xl font-bold text-slate-900">Acceso administrador</h1>
+        <img src="/logo-mark.png" alt="Amaru" className="mx-auto h-14 w-auto" />
+        <h1 className="text-center text-xl font-bold text-slate-900">Acceso administrador</h1>
         <Input
           type="email"
           name="email"

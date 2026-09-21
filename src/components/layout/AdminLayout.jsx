@@ -16,7 +16,8 @@ export function AdminLayout() {
   return (
     <div className="flex min-h-screen bg-slate-50">
       <aside className="flex w-56 flex-col border-r border-slate-200 bg-white">
-        <div className="border-b border-slate-200 px-4 py-4 text-lg font-bold text-slate-900">
+        <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-4 text-lg font-bold text-slate-900">
+          <img src="/logo-mark.png" alt="" className="h-7 w-auto" />
           Admin
         </div>
         <nav className="flex-1 space-y-1 px-2 py-4">
