@@ -26,10 +26,10 @@ export function FounderSection({ founder }) {
               <img
                 src={founder.photo_url}
                 alt={founder.name}
-                className="h-32 w-32 rounded-xl object-cover"
+                className="h-56 w-56 rounded-2xl object-cover shadow-xl shadow-sky-950/40 ring-1 ring-slate-800 sm:h-64 sm:w-64"
               />
             ) : (
-              <div className="flex h-32 w-32 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-slate-900 text-3xl font-bold text-white">
+              <div className="flex h-56 w-56 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-slate-900 text-5xl font-bold text-white shadow-xl shadow-sky-950/40 sm:h-64 sm:w-64">
                 {initials(founder.name)}
               </div>
             )}

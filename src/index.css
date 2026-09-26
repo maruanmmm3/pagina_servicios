@@ -6,31 +6,61 @@ body {
 
 .booking-calendar.rdp-root {
   --rdp-accent-color: #38bdf8;
-  --rdp-accent-background-color: rgba(56, 189, 248, 0.15);
-  --rdp-today-color: #38bdf8;
-  --rdp-day_button-border-radius: 8px;
-  --rdp-outside-opacity: 0.35;
-  --rdp-disabled-opacity: 0.3;
+  --rdp-accent-background-color: rgba(56, 189, 248, 0.18);
+  --rdp-today-color: #7dd3fc;
+  --rdp-day_button-border-radius: 10px;
+  --rdp-day-width: 2.75rem;
+  --rdp-day-height: 2.75rem;
+  --rdp-outside-opacity: 0.3;
+  --rdp-disabled-opacity: 0.25;
   color: #e2e8f0;
   margin: 0;
+  font-size: 0.95rem;
+}
+
+.booking-calendar .rdp-months {
+  background: linear-gradient(160deg, rgba(56, 189, 248, 0.08), transparent 60%);
+  border-radius: 14px;
+  padding: 0.5rem;
+}
+
+.booking-calendar .rdp-day_button {
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
 }
 
 .booking-calendar .rdp-day_button:hover:not(:disabled) {
-  background-color: rgba(56, 189, 248, 0.12);
+  background-color: rgba(56, 189, 248, 0.18);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.booking-calendar .rdp-today:not(.rdp-selected) .rdp-day_button {
+  box-shadow: inset 0 0 0 1.5px #38bdf8;
+  color: #7dd3fc;
+  font-weight: 700;
 }
 
 .booking-calendar .rdp-selected .rdp-day_button {
-  background-color: #38bdf8;
-  color: #020617;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #02131f;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.55);
 }
 
 .booking-calendar .rdp-weekday {
-  color: #94a3b8;
+  color: #7dd3fc;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
 }
 
 .booking-calendar .rdp-caption_label {
   color: #f1f5f9;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: capitalize;
 }
 
 .booking-calendar .rdp-chevron {
@@ -40,4 +70,11 @@ body {
 .booking-calendar .rdp-button_previous,
 .booking-calendar .rdp-button_next {
   color: #e2e8f0;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.booking-calendar .rdp-button_previous:hover:not(:disabled),
+.booking-calendar .rdp-button_next:hover:not(:disabled) {
+  background-color: rgba(56, 189, 248, 0.18);
 }

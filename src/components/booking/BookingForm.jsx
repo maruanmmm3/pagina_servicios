@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useCategories } from '../../hooks/useServices'
 import { useAvailableSlots } from '../../hooks/useAvailableSlots'
 import { useBusinessHours, useBlockedDates } from '../../hooks/useSchedule'
@@ -11,7 +12,8 @@ const fieldClass =
 
 export function BookingForm() {
   const { categories } = useCategories()
-  const [serviceId, setServiceId] = useState('')
+  const [searchParams] = useSearchParams()
+  const [serviceId, setServiceId] = useState(searchParams.get('servicio') ?? '')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [clientName, setClientName] = useState('')
@@ -26,6 +28,11 @@ export function BookingForm() {
   const { dates: blockedDates } = useBlockedDates()
 
   const inactiveWeekdays = hours.filter((day) => !day.is_active).map((day) => day.day_of_week)
+
+  useEffect(() => {
+    const fromUrl = searchParams.get('servicio')
+    if (fromUrl) setServiceId(fromUrl)
+  }, [searchParams])
 
   const handleSelectDate = (isoDate) => {
     setDate(isoDate)
@@ -96,8 +103,8 @@ export function BookingForm() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <div className="flex flex-col gap-2 text-sm text-slate-300">
-          <span className="font-medium">Elige una fecha</span>
-          <div className="rounded-lg border border-slate-700 bg-slate-900 p-3">
+          <span className="flex items-center gap-1.5 font-medium">📅 Elige una fecha</span>
+          <div className="rounded-xl border border-sky-400/20 bg-gradient-to-br from-slate-900 to-slate-900/60 p-3 shadow-lg shadow-sky-950/30">
             <Calendar
               selectedDate={date}
               onSelectDate={handleSelectDate}
@@ -107,12 +114,14 @@ export function BookingForm() {
           </div>
         </div>
         <div className="flex flex-col gap-2 text-sm text-slate-300">
-          <span className="font-medium">Elige un horario</span>
-          {date ? (
-            <TimeSlotPicker slots={slots} isLoading={slotsLoading} selected={time} onSelect={setTime} />
-          ) : (
-            <p className="text-sm text-slate-500">Elige primero una fecha en el calendario.</p>
-          )}
+          <span className="flex items-center gap-1.5 font-medium">🕒 Elige un horario</span>
+          <div className="rounded-xl border border-sky-400/20 bg-gradient-to-br from-slate-900 to-slate-900/60 p-3 shadow-lg shadow-sky-950/30">
+            {date ? (
+              <TimeSlotPicker slots={slots} isLoading={slotsLoading} selected={time} onSelect={setTime} />
+            ) : (
+              <p className="text-sm text-slate-500">Elige primero una fecha en el calendario.</p>
+            )}
+          </div>
         </div>
       </div>
 
