@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: todas las rutas devuelven index.html para que React Router las maneje
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
